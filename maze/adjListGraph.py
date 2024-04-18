@@ -6,9 +6,9 @@
 # __copyright__ = 'Copyright 2024, RMIT University'
 # ------------------------------------------------------------------------
 
-
+# ------------------------------------------------------------------------
 #Linked List and Node class by Jeffrey Chan, RMIT, from week 2 workshop code
-
+# ------------------------------------------------------------------------
 from typing import List
 
 from maze.util import Coordinates
