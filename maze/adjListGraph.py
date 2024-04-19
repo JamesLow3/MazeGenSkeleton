@@ -285,13 +285,14 @@ class AdjListGraph(Graph):
 
 
     def updateWall(self, vert1:Coordinates, vert2:Coordinates, wallStatus:bool)->bool:
-        isWall = self.getWallStatus(vert1, vert2)
-        if isWall:
-            self.removeEdge(vert1, vert2)
-            return False
-        else:
-            self.addEdge(vert1, vert2, True)
-            return True
+        if vert1.isAdjacent(vert2):
+            isWall = self.getWallStatus(vert1, vert2)
+            if isWall:
+                self.removeEdge(vert1, vert2)
+                return False
+            else:
+                self.addEdge(vert1, vert2, True)
+                return True
 
 
 
@@ -299,9 +300,11 @@ class AdjListGraph(Graph):
         i = self.find_vertex(vert1)
         j = self.find_vertex(vert2)
         
-        self.vertices[i].remove(vert2)
-        self.vertices[j].remove(vert1)
-        return True
+        if i != -1 and j != -1:
+            self.vertices[i].remove(vert2)
+            self.vertices[j].remove(vert1)
+            return True
+        return False
         
         
 

@@ -46,19 +46,20 @@ class AdjMatGraph(Graph):
     def updateWall(self, vert1:Coordinates, vert2:Coordinates, wallStatus:bool)->bool:
         if vert1 not in self.vertices or vert2 not in self.vertices:
             return False
-        
-        if self.adj_matrix[(vert1, vert2)] == 1:
-            self.adj_matrix[(vert1, vert2)] = 2
-        else:
-            self.adj_matrix[(vert1, vert2)] = 1
+        if vert1.isAdjacent(vert2):
+            if self.adj_matrix[(vert1, vert2)] == 1:
+                self.adj_matrix[(vert1, vert2)] = 2
+            else:
+                self.adj_matrix[(vert1, vert2)] = 1
+                
             
-        
 
-        if self.adj_matrix[(vert2, vert1)] == 1:
-            self.adj_matrix[(vert2, vert1)] = 2
+            if self.adj_matrix[(vert2, vert1)] == 1:
+                self.adj_matrix[(vert2, vert1)] = 2
+            else:
+                self.adj_matrix[(vert2, vert1)] = 1
         else:
-            self.adj_matrix[(vert2, vert1)] = 1
-
+            return False
         return True
         
 
